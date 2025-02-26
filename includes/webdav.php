@@ -3,7 +3,7 @@ function webdav_upload_backup($file_path) {
     $url = get_option('webdav_url'); // URL WebDAV principal
     $user = get_option('webdav_user');
     $pass = get_option('webdav_pass');
-
+    $dirUrl = get_option('webdav_directory');
     // 🔹 Verifică dacă fișierul există înainte de upload
     if (!file_exists($file_path)) {
         error_log("❌ Eroare: Fișierul de backup nu există - $file_path");
@@ -18,8 +18,9 @@ function webdav_upload_backup($file_path) {
     }
 
     // 🔹 Setează calea corectă în WebDAV
-    $file_name = basename($file_path);
-    $remote_url = rtrim($url, '/') . "/serverbackups/" . $file_name; 
+    $file_name = basename(path: $file_path);
+    $remote_url = rtrim($url, '/') . "/" . $dirUrl . "/" . $file_name;
+    error_log('dirUrl: '.$remote_url);
 
     // 🔹 Inițializează cURL pentru upload
     $ch = curl_init();

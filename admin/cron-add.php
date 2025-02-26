@@ -28,6 +28,9 @@ function webdav_backup_cron_add_page() {
             <h3>La câte zile diferență să facă backup?</h3>
             <input type="number" name="interval_days" min="1" max="30" value="7"><br><br>
 
+            <h3>Frecvența backup-ului (în zile):</h3>
+            <input type="number" name="frequency" min="1" max="30" value="1"><br><br>
+            
             <input type="submit" class="button-primary" value="Adaugă Cron Job">
         </form>
     </div>

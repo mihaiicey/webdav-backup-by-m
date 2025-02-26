@@ -5,10 +5,15 @@ function webdav_backup_manual_page() {
         $selected_folders = isset($_POST["folders"]) ? $_POST["folders"] : [];
         $backup_file = webdav_create_backup($include_db, $selected_folders);
         if ($backup_file) {
-            webdav_upload_backup($backup_file);
-            echo '<div class="updated"><p>Backup realizat și încărcat cu succes pe WebDAV!</p></div>';
+            $upload_result = webdav_upload_backup($backup_file); // Verificăm return value
+
+            if ($upload_result) {
+                echo '<div class="updated"><p>✅ Backup realizat și încărcat cu succes pe server!</p></div>';
+            } else {
+                echo '<div class="error"><p>❌ Backup-ul a fost creat, dar nu s-a putut încărca pe server!</p></div>';
+            }
         } else {
-            echo '<div class="error"><p>Eroare la crearea backup-ului!</p></div>';
+            echo '<div class="error"><p>❌ Eroare la crearea backup-ului!</p></div>';
         }
     }
 

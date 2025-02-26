@@ -5,6 +5,7 @@ function webdav_backup_settings_page() {
         update_option('webdav_url', sanitize_text_field($_POST["webdav_url"]));
         update_option('webdav_user', sanitize_text_field($_POST["webdav_user"]));
         update_option('webdav_pass', sanitize_text_field($_POST["webdav_pass"]));
+        update_option('webdav_directory', sanitize_text_field($_POST["webdav_directory"])); 
         echo '<div class="updated"><p>Setările au fost salvate!</p></div>';
     }
 
@@ -12,6 +13,7 @@ function webdav_backup_settings_page() {
     $webdav_url = get_option('webdav_url', '');
     $webdav_user = get_option('webdav_user', '');
     $webdav_pass = get_option('webdav_pass', '');
+    $webdav_directory = get_option('webdav_directory', '');
 
     ?>
     <div class="wrap">
@@ -21,6 +23,10 @@ function webdav_backup_settings_page() {
                 <tr>
                     <th><label for="webdav_url">URL WebDAV</label></th>
                     <td><input type="text" name="webdav_url" value="<?php echo esc_attr($webdav_url); ?>" class="regular-text"></td>
+                </tr>
+                <tr>
+                    <th><label for="webdav_directory">Director</label></th>
+                    <td><input type="text" name="webdav_directory" value="<?php echo esc_attr($webdav_directory); ?>" class="regular-text"></td>
                 </tr>
                 <tr>
                     <th><label for="webdav_user">Utilizator</label></th>

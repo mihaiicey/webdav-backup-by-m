@@ -21,12 +21,12 @@ require_once WEBDAV_BACKUP_DIR . 'includes/backup.php';
 require_once WEBDAV_BACKUP_DIR . 'includes/cron.php';
 require_once WEBDAV_BACKUP_DIR . 'includes/database.php';
 require_once WEBDAV_BACKUP_DIR . 'includes/webdav.php';
-
 // Include paginile din Admin
 require_once WEBDAV_BACKUP_DIR . 'admin/settings-page.php';
 require_once WEBDAV_BACKUP_DIR . 'admin/backup-page.php';
 require_once WEBDAV_BACKUP_DIR . 'admin/cron-page.php';
 require_once WEBDAV_BACKUP_DIR . 'admin/cron-add.php';
+require_once WEBDAV_BACKUP_DIR . 'admin/cron-edit.php';
 
 // Adaugă meniul în admin
 // Adaugă meniul în admin
@@ -48,7 +48,6 @@ function webdav_backup_menu() {
         'webdav-backup-manual',
         'webdav_backup_manual_page'
     );
-
     add_submenu_page(
         'webdav-backup',
         'Cron Jobs',
@@ -57,15 +56,13 @@ function webdav_backup_menu() {
         'webdav-backup-cron',
         'webdav_backup_cron_page'
     );
-
-    // 🔹 Adăugăm "Adaugă Cron Job" ca pagină de admin, dar nu în meniu
     add_submenu_page(
-        'webdav-backup',  // NULL ascunde această pagină din meniu
-        'Adaugă Cron Job',
-        'Adaugă Cron Job',
-        'manage_options',
-        'webdav-backup-cron-add',
-        'webdav_backup_cron_add_page'
+        'options.php',
+        'Editare Cron', 
+        'Editare Cron', 
+        'manage_options', 
+        'cron-edit', 
+        'webdav_backup_cron_edit_page'
     );
 }
 add_action('admin_menu', 'webdav_backup_menu');
